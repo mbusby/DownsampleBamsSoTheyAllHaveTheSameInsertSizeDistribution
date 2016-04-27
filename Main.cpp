@@ -1,3 +1,17 @@
+/*
+Developed by: Michele Busby, Computational Biologist
+Broad Technology Labs/MBRD
+Broad Institute 
+Last Update: 4/27/16
+
+/*=================================
+ Useage: 
+  ./GetRandomByReadNormalizedByInsertSize -bam bam1.bam -bam bam2.bam -bam bam3.bam -out /outDirectory/ 
+ 
+ 
+=================================*/
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,17 +24,7 @@
 
 //g++ *.cpp -L/seq/mbrd/mbusby/Software/bamtools/lib -I/seq/mbrd/mbusby/Software/bamtools/include -I/seq/mbrd/mbusby/Software/bamtools/include/api
 
-/*==========================================================================
-This parses the bam file to generate values by transcript
-Reports:
-Reads
-Unique reads
-Pairs where both ends align 
-Duplicates
-Unique Duplicates
 
-
-==========================================================================*/
 
 unsigned int checkErrors();
 void displayHelp();
@@ -56,12 +60,7 @@ bool is_folder_writable(const char* );
 using namespace std;
 using namespace BamTools;
 
-/*
- *Useage: 
- * ./GetRandomByReadNormalizedByInsertSize -bam /seq/mbrd/mbusby/analyseCoverage/RSEM_alignments_sorted/sample17.sorted.bam -out  /seq/mbrd/mbusby/analyseCoverage/chromosomeCounts/sample17cts.txt -nReads 1000000 -seed 5403 -aligned_only true
- *
- *
-*/
+
 int main(int argc, char* argv[]) 
 {
 		
@@ -295,10 +294,10 @@ void processBamFiles()
 		
 }
 
-/***********************************************************
+/*=============================================================
 Get map of fragment sizes where fragment size = firstReadLength + insert size + second read length
 That should give you the size of the DNA fragment that got sequenced
-***********************************************************/
+===============================================================*/
 void getFragmentSizeMaps()
 {
 	Handy h(0);
@@ -565,9 +564,9 @@ inline char separator()
 #endif
 }
 
-/************************************************************************
+/*===========================================================================================
 Checks that all the bams can be opened
-************************************************************************/
+===========================================================================================*/
 
 void checkBamsForOpening()
 {
@@ -631,11 +630,14 @@ bool is_folder_writable(const char* str) {
 void displayHelp()
 {
 
+	cout<<"Usage:"<<endl;
+	cout<<"./GetRandomByReadNormalizedByInsertSize -bam bam1.bam -bam bam2.bam -bam bam3.bam -out /outDirectory/ "<<endl;
+	cout<<"  "<<endl;
 	cout<<"Important parameters:\n";	
 	cout<<"-bam Name of the bam file. The final name should be unique in the group."<<endl;
 	cout<<"-control_bam A bam file downsampled to the same proportions as the other bams but is not downsampled."<<endl;
 	cout<<"-out_dir The directory where all the output bams will be written."<<endl;
-	cout<<"-mode Mode is proportional or downsample (default). If proportional mode is chosen then output will have the same distribution of fragment sizes but not read count."<<endl;
+	//cout<<"-mode Mode is proportional or downsample (default). If proportional mode is chosen then output will have the same distribution of fragment sizes but not read count."<<endl;
 
 	cout<<"Optionall:\n";
 	cout<<"-seed A random number seed."<<endl;
