@@ -1,4 +1,5 @@
 Authors: Michele Busby (code and specification)
+Broad Technology Labs
 
 What does it do?
 Takes in a group of bam files and downsamples them so that they all have ~ the same number of reads and ~ the same distribution of insert sizes.
@@ -7,7 +8,7 @@ The program first counts how many read pairs are present for each insert size fo
 
 For example, if four alignments for a given antibody have one, two, three, and four million reads with an insert size of 100, all four alignments would be randomly downsampled so that the four normalized alignments each have ~one millon reads with an insert size of 100. This is performed for each insert size present in all of the alignments in the group to yield final bam files with ~ the same number of reads and insert size distribution with some minimal noise introduced to the total counts by the random sampling. This approach therefore allows for identical insert size distributions while maximizing the number of reads included in the output files. 
 
-What would I want to do that?
+Why would I want to do that?
 You might want to do this for ChIP-Seq as a normalization approach to compare two samples which have very different insert size distributions.
 
 How does it work? 
